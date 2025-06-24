@@ -1,1 +1,16 @@
+.custom-purple-table {
+  background-color: #444462; /* ungu muda */
+  border-color: #ccc;
+}
+
+.custom-purple-table th,
+.custom-purple-table td {
+  background-color: #444462; /* pastikan semua sel juga berwarna */
+  border: 1px solid #f7f7f7 !important;
+  color: #f7f7f7 !important;
+}
+
+.custom-purple-table thead th {
+  background-color: #444462 !important; /* ungu sedikit lebih gelap untuk header */
+}
 /* You can add global styles to this file, and also import other style files */

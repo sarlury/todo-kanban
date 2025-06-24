@@ -13,7 +13,11 @@ export class TodoService {
     private http: HttpClient
   ) { }
 
-  getTodoList(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(Path.GET_TODO_DATA);
+  getTodoList(): Observable<any> {
+    return this.http.get(Path.GET_TODO_DATA);
+  }
+
+  updateTodoStatus(id: string, status: string): Observable<Todo[]>{
+    return this.http.put<Todo[]>(`${''}/${id}`, { status });
   }
 }

@@ -1,0 +1,41 @@
+<div class="container-table">
+  kanban
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <input [(ngModel)]="search" (input)="onSearchChange()" placeholder="Search Task..." class="form-control w-25" />
+    <input [(ngModel)]="developerFilter" (input)="onSearchChange()" placeholder="Filter Developer..." class="form-control w-25" />
+    <select [(ngModel)]="sortKey" (change)="applyFilters()" class="form-select w-25">
+      <option value="title">Sort by Title</option>
+      <option value="priority">Sort by Priority</option>
+      <option value="type">Sort by Type</option>
+    </select>
+    <button class="btn btn-primary" (click)="openTaskModal()">+ New Task</button>
+  </div>
+  
+  <div class="kanban-container d-flex gap-3 overflow-auto">
+    <div class="kanban-column" *ngFor="let status of statuses">
+      <div class="kanban-header">{{ status }} {{ status }}</div>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="getTodosByStatus(status)"
+        class="kanban-dropzone"
+        (cdkDropListDropped)="drop($event, status)"
+      >
+        <div
+          class="kanban-card"
+          *ngFor="let task of getTodosByStatus(status)"
+          cdkDrag
+        >
+          <div class="fw-bold">{{ task.title }}</div>
+          <div class="badge bg-secondary me-1">{{ task.priority }}</div>
+          <div class="badge bg-dark me-1">{{ task.estimatedSP }} SP</div>
+          <div class="badge bg-light text-dark">{{ task.type }}</div>
+          <div class="mt-2 small">
+            👤 {{ task.developer }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
